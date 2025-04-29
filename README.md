@@ -2,9 +2,11 @@
 This repo contains basic todo app CRUDs.
 
 
-### To start the app:
-Command to make venu dir: `python -m venv venv`
-<br>
+### Prerequisite to start the app:
+`python -m venv venv`
+
+`pip install fastapi uvicorn`
+
 `source venv/bin/activate`
 
 ### Command to start the app:
