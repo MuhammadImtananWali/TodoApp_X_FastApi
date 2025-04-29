@@ -9,5 +9,7 @@ This repo contains basic todo app CRUDs.
 
 `source venv/bin/activate`
 
+`pip install -r requirements.txt`
+
 ### Command to start the app:
 `uvicorn main:app --reload`
