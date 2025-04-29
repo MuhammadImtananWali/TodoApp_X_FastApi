@@ -1,0 +1,72 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Pytest
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Pytest / Coverage
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+
+# Environment variable files
+.env
+.env.*
+
+# SQLite database
+*.sqlite3
+*.db
+
+# Logs
+*.log
+
+# VSCode settings
+.vscode/
+
+# macOS files
+.DS_Store
+
+# Python notebooks
+.ipynb_checkpoints/
+
+# Migrations (if using Alembic, modify as needed)
+migrations/__pycache__/
+
+# MyPy, Pylint, etc.
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Docker
+*.pid
+docker-compose.override.yml
