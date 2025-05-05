@@ -45,6 +45,16 @@ class CreateUserRequest(BaseModel):
 def get_all_users(db: db_dependancy):
     return db.query(Users).all()
 
+@router.get("/{user_id}", status_code=status.HTTP_200_OK)
+async def get_user_by_id(db: db_dependancy, user_id: int):
+    user = db.query(Users).filter(Users.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found",
+        )
+    return user
+
 @router.post("", status_code=status.HTTP_201_CREATED)
 async def create_users(db: db_dependancy, create_user_request: CreateUserRequest):
     user_by_email = db.query(Users).filter(Users.email == create_user_request.email).first()
