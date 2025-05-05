@@ -6,10 +6,7 @@ from sqlalchemy.orm import Session
 from .model import Users
 
 
-router = APIRouter(
-    prefix="/users",
-    tags=["users"],
-)
+router = APIRouter(tags=["User"])
 
 
 def get_db():
@@ -44,12 +41,12 @@ class CreateUserRequest(BaseModel):
         }
     }
 
-@router.get("", status_code=status.HTTP_200_OK)
+@router.get("/users", status_code=status.HTTP_200_OK)
 def get_all_user(db: db_dependancy):
     return db.query(Users).all()
 
 
-@router.post("", status_code=status.HTTP_201_CREATED)
+@router.post("/user", status_code=status.HTTP_201_CREATED)
 async def create_user(db: db_dependancy, create_user_request: CreateUserRequest):
     user_by_email = db.query(Users).filter(Users.email == create_user_request.email).first()
     user_by_username = db.query(Users).filter(Users.username == create_user_request.username).first()

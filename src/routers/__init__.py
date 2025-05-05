@@ -1,1 +1,1 @@
-from src.routers.users.users import router as users_router
+from src.routers.user.user import router as users_router
