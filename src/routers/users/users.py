@@ -78,3 +78,16 @@ async def create_users(db: db_dependancy, create_user_request: CreateUserRequest
 
     db.add(new_user)
     db.commit()
+    return {"message": "User created successfully.", "user": new_user}
+
+@router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_user_by_id(db: db_dependancy, user_id: int):
+    user = db.query(Users).filter(Users.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found",
+        )
+    db.delete(user)
+    db.commit()
+    return {"message": "User deleted successfully."}
