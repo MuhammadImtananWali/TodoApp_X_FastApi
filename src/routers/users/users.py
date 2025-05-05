@@ -80,6 +80,25 @@ async def create_users(db: db_dependancy, create_user_request: CreateUserRequest
     db.commit()
     return {"message": "User created successfully.", "user": new_user}
 
+@router.put("/{user_id}", status_code=status.HTTP_200_OK)
+async def update_user_by_id(db: db_dependancy, user_id: int, create_user_request: CreateUserRequest):
+    user = db.query(Users).filter(Users.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found",
+        )
+    
+    user.email = create_user_request.email
+    user.username = create_user_request.username
+    user.first_name = create_user_request.first_name
+    user.last_name = create_user_request.last_name
+    user.hashed_password = create_user_request.password
+    user.phone_number = create_user_request.phone_number
+
+    db.commit()
+    return {"message": "User updated successfully.", "user": user}
+
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user_by_id(db: db_dependancy, user_id: int):
     user = db.query(Users).filter(Users.id == user_id).first()
