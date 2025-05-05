@@ -23,11 +23,6 @@ def get_db():
 # user_dependancy = Annotated[dict, Depends(get_current_user)]
 db_dependancy = Annotated[Session, Depends(get_db)]
 
-
-@router.get("", status_code=status.HTTP_200_OK)
-def get_all_user(db: db_dependancy):
-    return db.query(Users).all()
-
 class CreateUserRequest(BaseModel):
     email: EmailStr = Field(..., example="john@example.com")
     username: str = Field(..., example="johndoe")
@@ -48,6 +43,10 @@ class CreateUserRequest(BaseModel):
             }
         }
     }
+
+@router.get("", status_code=status.HTTP_200_OK)
+def get_all_user(db: db_dependancy):
+    return db.query(Users).all()
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
